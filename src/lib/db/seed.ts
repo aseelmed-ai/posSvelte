@@ -7,13 +7,17 @@ export async function seedUsers() {
     try {
         // إنشاء مستخدم مدير
         await register('admin', 'admin123', 'مدير النظام', 'admin');
-        
+
         // إنشاء مستخدم موظف
         await register('cashier', 'cashier123', 'موظف المبيعات', 'cashier');
-        
+
         console.log('تم إنشاء المستخدمين بنجاح');
     } catch (error) {
-        console.error('خطأ في إنشاء المستخدمين:', error);
+        if (error instanceof Error) {
+            console.error('خطأ في إنشاء المستخدمين:', error.message, error.stack);
+        } else {
+            console.error('خطأ غير معروف في إنشاء المستخدمين:', error);
+        }
     }
 }
 
@@ -65,12 +69,14 @@ export async function seedProducts() {
     ];
 
     try {
-        for (const product of products) {
-            await addDocument('products', product);
-        }
+        await Promise.all(products.map(product => addDocument('products', product)));
         console.log('تم إنشاء المنتجات بنجاح');
     } catch (error) {
-        console.error('خطأ في إنشاء المنتجات:', error);
+        if (error instanceof Error) {
+            console.error('خطأ في إنشاء المنتجات:', error.message, error.stack);
+        } else {
+            console.error('خطأ غير معروف في إنشاء المنتجات:', error);
+        }
     }
 }
 
@@ -96,12 +102,14 @@ export async function seedCustomers() {
     ];
 
     try {
-        for (const customer of customers) {
-            await addDocument('customers', customer);
-        }
+        await Promise.all(customers.map(customer => addDocument('customers', customer)));
         console.log('تم إنشاء العملاء بنجاح');
     } catch (error) {
-        console.error('خطأ في إنشاء العملاء:', error);
+        if (error instanceof Error) {
+            console.error('خطأ في إنشاء العملاء:', error.message, error.stack);
+        } else {
+            console.error('خطأ غير معروف في إنشاء العملاء:', error);
+        }
     }
 }
 

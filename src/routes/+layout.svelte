@@ -17,12 +17,12 @@
               <h1 class="text-xl font-bold">نظام نقاط البيع</h1>
             </div>
             <div class="hidden sm:mr-6 sm:flex sm:space-x-4">
-              <NavLink href="/" exact>الرئيسية</NavLink>
-              <NavLink href="/products">المنتجات</NavLink>
-              <NavLink href="/customers">العملاء</NavLink>
-              <NavLink href="/reports">التقارير</NavLink>
+              <NavLink href="/" exact aria-label="الرئيسية">الرئيسية</NavLink>
+              <NavLink href="/products" aria-label="المنتجات">المنتجات</NavLink>
+              <NavLink href="/customers" aria-label="العملاء">العملاء</NavLink>
+              <NavLink href="/reports" aria-label="التقارير">التقارير</NavLink>
               {#if $currentUser.role === 'admin'}
-                <NavLink href="/settings">الإعدادات</NavLink>
+                <NavLink href="/settings" aria-label="الإعدادات">الإعدادات</NavLink>
               {/if}
             </div>
           </div>
@@ -41,6 +41,7 @@
                 <a
                   href="/profile"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  aria-label="الملف الشخصي"
                 >
                   الملف الشخصي
                 </a>
@@ -51,6 +52,7 @@
                     currentUser.set(null);
                     notifications.add('تم تسجيل الخروج بنجاح', 'success');
                   }}
+                  aria-label="تسجيل الخروج"
                 >
                   تسجيل الخروج
                 </button>
